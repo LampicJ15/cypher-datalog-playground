@@ -31,7 +31,6 @@
     :query '{:find     [?company (distinct ?category-name)]
              :keys     [supplier supplied-categories]
              :order-by [[?company :asc]]
-             :limit    10
              :where    [[product :supplierID supplier-id]
                         [product :categoryID category-id]
                         [company :supplierID supplier-id]
@@ -86,7 +85,7 @@
 
    {:title "How are Employees Organized? Who Reports to Whom?"
     :query '{:find  [(str ?employee-name " " ?employee-surname) (str ?manager-name " " ?manager-surname)]
-             :keys  [employee manager]
+             :keys  [employee reports-to]
              :where [[manager :employeeID manager-id]
                      [employee :reportsTo manager-id]
                      [manager :firstName ?manager-name]

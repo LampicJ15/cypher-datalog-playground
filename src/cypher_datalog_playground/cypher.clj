@@ -49,7 +49,7 @@
    {:title "Get suppliers categories"
     :query "MATCH (supplier:Supplier)-->(:Product)-->(category:Category)
     RETURN supplier.companyName as company, collect(distinct category.categoryName) as categories
-    ORDER BY company ASC LIMIT 10"}
+    ORDER BY company ASC"}
 
    {:title "Find the suppliers of product in the Produce category"
     :query "MATCH (:Category {categoryName:\"Produce\"})<--(:Product)<--(supplier:Supplier)
@@ -67,7 +67,7 @@
 
    {:title "How are Employees Organized? Who Reports to Whom?"
     :query "MATCH (employee:Employee)<-[:REPORTS_TO]-(subEmployee)
-    RETURN employee.firstName + ' ' + employee.lastName AS manager, subEmployee.firstName + ' ' + subEmployee.lastName AS employee"}])
+    RETURN subEmployee.firstName + ' ' + subEmployee.lastName AS employee, employee.firstName + ' ' + employee.lastName AS reportsTo"}])
 
 
 (defn- run-query-and-print-results
